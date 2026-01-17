@@ -3,8 +3,6 @@ import { Appointment } from "../entities/Appointment.entity";
 import { Status } from "../Interface/Appointment.Interface";
 
 
-
-
 export const AppointmentModel = appDataSource.getRepository(Appointment).extend({
 
     validateAllowAppointment: function(date: Date, time: string): void{
@@ -35,6 +33,4 @@ export const AppointmentModel = appDataSource.getRepository(Appointment).extend(
         })
         if(appFound) throw Error(`La cita para el usuario con id ${userId}, fecha ${date} y hora ${time} ya existe.`)
     }
-
-
 })
