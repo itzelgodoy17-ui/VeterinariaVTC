@@ -13,16 +13,3 @@ appointmentsRouter.post("/schedule", (req: Request< unknown, unknown, ScheduleAp
 appointmentsRouter.put("/cancel/:id", (req: Request<{ id: string }>, res: Response) => cancelAppointmentController(req, res))
 
 export default appointmentsRouter
-
-
-
-
-
-
-// GET /appointments => Obtener el listado de todos los turnos de todos los usuarios.
-
-// GET /appointments/:id => Obtener el detalle de un turno específico.
-
-// POST /appointments/schedule => Agendar un nuevo turno.
-
-// PUT /appointments/cancel/:id => Cambiar el estatus de un turno a “cancelled”.

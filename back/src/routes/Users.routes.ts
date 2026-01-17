@@ -2,7 +2,6 @@ import { Request, Response, Router } from "express"
 import { getUserByIdController, getUsersController, userLoginController, userRegisterController } from "../controllers/Users.controller"
 import { UserLoginDTO, UserRegisterDTO } from "../DTO/User.DTO"
 
-
 const usersRouter: Router = Router ()
 
 usersRouter.get("/", (req: Request, res: Response) => getUsersController(req, res))

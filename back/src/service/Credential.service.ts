@@ -1,40 +1,41 @@
-import { Credential } from "../Interface/Credential.Interface";
+import { EntityManager } from "typeorm";
+import { Credential } from "../entities/Credentials.entity";
+import { CredentialModel } from "../repositories/Credentials.repositorie";
 
+const crypPass = async (text: string): Promise<string> => {
+    const encoder = new TextEncoder()
+    const data = encoder.encode(text)
+    const hash = await crypto.subtle.digest("SHA-256", data)
+    const hashArray = Array.from(new Uint8Array(hash))
+    const hashHex = hashArray.map(b=>b.toString(16).padStart(2, `0`)).join("")
+    return hashHex
+}
 
-
-
-const credentialList: Credential[] = []
-let id: number = 1
-
-const checkUsernameExist = ( username: string ) => {
-
-    const credentialFound: Credential | undefined = credentialList.find( (credential) => credential.username === username)
+const checkUsernameExist = async ( username: string ) => {
+    const credentialFound: Credential | null = await CredentialModel.findOne({
+        where: {
+            username
+        }
+    })
     if(credentialFound) throw new Error(`El username ${username} ya esta en uso, intente con uno nuevo`)
 }
 
-export const createCredentialService = ( username: string, password: string ): number => {
-
-    checkUsernameExist(username)
-    const credential = {
-        id,
+export const createCredentialService = async (entityManager:EntityManager, username: string, password: string): Promise<Credential> => {
+    await checkUsernameExist(username)
+    const newCredential: Credential = entityManager.create(Credential, {
         username,
-        password
-    }
-    credentialList.push(credential)
-    id++
-    return credential.id
+        password: await crypPass(password)
+    })
+    await entityManager.save(newCredential)
+    return newCredential
 }
 
-const crearCredenciales = () => {
-
-    createCredentialService("Itzel", "12345")
-    createCredentialService("Itzel", "12345")
-    createCredentialService("Itzel", "12345")
-    createCredentialService("Itzel", "12345")
-    createCredentialService("Itzel", "12345")
-    createCredentialService("Itzel", "12345")
-
-    console.log(credentialList)
+export const checkCredentials = async (username: string, password: string): Promise < number > => {
+    const credentialFound: Credential | null = await CredentialModel.findOne({
+        where: {
+            username
+        }
+    })
+    if(credentialFound?.password !== await crypPass(password)) throw new Error(`Credenciales incorrectas`)
+    return credentialFound.id
 }
-
-crearCredenciales()
