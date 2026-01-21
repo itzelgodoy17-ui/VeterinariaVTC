@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 50%, #6ee7b7 100%);
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  font-size: 10rem;
+  font-weight: 900;
+  color: #059669;
+  margin: 0;
+  text-shadow: 4px 4px 8px rgba(5, 150, 105, 0.3);
+  animation: bounce 1s ease-in-out infinite alternate;
+  line-height: 1;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+.mesaage {
+  font-size: 1.5rem;
+  color: #047857;
+  margin: 2rem 0;
+  font-weight: 500;
+  max-width: 500px;
+  animation: slideIn 1s ease-out 0.3s both;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.homeButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  animation: slideIn 1s ease-out 0.6s both;
+}
+
+.homeButton:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+}
+
+.homeButton:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 6rem;
+  }
+
+  .mesaage {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+  }
+
+  .homeButton {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 4.5rem;
+  }
+
+  .mesaage {
+    font-size: 1rem;
+  }
+}

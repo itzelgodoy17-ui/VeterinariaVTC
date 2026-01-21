@@ -3,13 +3,11 @@ import Turno from "../../components/Turnos/turno"
 import Styles from "./Misturnos.Module.css"
 import axios from "axios"
 
-
 function MisTurnos(){
 
     const [myApp, setMyApp] = useState([])
 
     useEffect( () => {
-
         setTimeout(() => {
             axios.get(`http://localhost:3000/appointments/`)
            .then((response) => {
@@ -17,7 +15,6 @@ function MisTurnos(){
            })
            .catch((err) => console.log(err))
         }, 2000)
-           
     }, [])
 
     return(

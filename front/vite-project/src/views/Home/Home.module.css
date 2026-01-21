@@ -1,0 +1,34 @@
+.homeContainer {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(../Home/img/perrito\ feliz.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+   display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.title {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+} 
+
+.parf {
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.6;       
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.10);
+  max-width: 650px;   
+  display: inline-block;
+}

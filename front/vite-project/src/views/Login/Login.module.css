@@ -1,0 +1,138 @@
+/* Contenedor principal del formulario */
+.formContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Formulario - tarjeta blanca centrada */
+.formContainer form {
+  background: white;
+  border-radius: 16px;
+  padding: 35px 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
+  border: 2px solid #86efac;
+  display: block;
+  height: auto;
+  min-height: auto;
+}
+
+/* Título del formulario */
+.formTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: #166534;
+  margin: 0 0 25px 0;
+  text-align: center;
+}
+
+.formTitle::before {
+  content: "🐾 ";
+}
+
+/* Grupo de campos */
+.formGroup {
+  margin-bottom: 18px;
+}
+
+/* Etiquetas */
+.formLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #16a34a;
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.formInput {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #86efac;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: #f0fdf4;
+  box-sizing: border-box;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #22c55e;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.formInput::placeholder {
+  color: #86efac;
+}
+
+/* Etiqueta de error */
+.errorLabel {
+  color: #8a0808;
+  font-size: 13px;
+  margin-top: 6px;
+  display: block;
+}
+
+.errorLabel::before {
+  content: "⚠️ ";
+}
+
+/* Input con error */
+.formInput.error {
+  border-color: #8a0808;
+  background-color: #fef2f2;
+}
+
+/* Botón de submit */
+.formButton {
+  width: 100%;
+  padding: 13px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  margin-top: 8px;
+}
+
+.formButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+}
+
+.formButton:active {
+  transform: translateY(0);
+}
+
+.formButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  background: linear-gradient(135deg, #86efac 0%, #6ee7b7 100%);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .formContainer {
+    padding: 20px 16px;
+  }
+
+  .formContainer form {
+    padding: 30px 24px;
+  }
+
+  .formTitle {
+    font-size: 24px;
+  }
+}

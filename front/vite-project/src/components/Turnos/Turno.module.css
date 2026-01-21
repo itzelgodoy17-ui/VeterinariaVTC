@@ -1,3 +1,157 @@
+/* Contenedor principal de la tarjeta de turno */
+.appointmentCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border-radius: 12px;
+  border: 2px solid #86efac;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(34, 197, 94, 0.1), 0 2px 4px rgba(34, 197, 94, 0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
 
+.appointmentCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(34, 197, 94, 0.15), 0 4px 8px rgba(34, 197, 94, 0.1);
+  border-color: #4ade80;
+}
 
+/* Header del turno */
+.appointmentHeader {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  padding: 14px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #15803d;
+}
 
+.appointmentHeader h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appointmentHeader h3::before {
+  content: "🐾";
+  font-size: 20px;
+}
+
+/* Estado del turno */
+.statusActive {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid #22c55e;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+}
+
+.statusInactive {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid #ef4444;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+/* Detalles del turno */
+.appointmentDetails {
+  padding: 16px 20px;
+  background-color: white;
+}
+
+.appointmentDetails p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appointmentDetails strong {
+  color: #16a34a;
+  font-weight: 600;
+  min-width: 70px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.appointmentDetails strong::before {
+  font-size: 16px;
+}
+
+.appointmentDetails p:nth-child(1) strong::before {
+  content: "📅";
+}
+
+.appointmentDetails p:nth-child(2) strong::before {
+  content: "⏰";
+}
+
+.appointmentDetails span {
+  color: #1f2937;
+  padding: 3px 10px;
+  background-color: #f0fdf4;
+  border-radius: 6px;
+  border: 1px solid #86efac;
+  font-size: 14px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .appointmentHeader {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .appointmentHeader h3 {
+    font-size: 16px;
+  }
+
+  .appointmentDetails {
+    padding: 14px 16px;
+  }
+
+  .appointmentDetails p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .appointmentDetails strong {
+    min-width: auto;
+  }
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.appointmentCard {
+  animation: slideIn 0.4s ease-out;
+}
