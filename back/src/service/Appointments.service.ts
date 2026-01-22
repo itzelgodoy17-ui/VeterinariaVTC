@@ -29,7 +29,7 @@ export const registerAppointmentService = async (app: ScheduleAppDTO): Promise<A
 
     const userFound: User = await getUserByIdService(app.userId)
     const newAppointment: Appointment = AppointmentModel.create({
-        date: new Date(app.date),
+        date: app.date,
         time: app.time,
         user: userFound,
     })
@@ -41,37 +41,3 @@ export const cancelAppointmentService = async (id: number): Promise<Appointment>
     appFound.status = Status.cancelled
     return await AppointmentModel.save(appFound)
 }
-
-// const appointmentList: Appointment[] = []
-
-// let id: number = 1
-
-// export const getAppointmentService = () => {
-//     return appointmentList
-// }
-
-// export const getAppointmentByIdService = (id: number): Appointment => {
-//     const appFound: Appointment | undefined = appointmentList.find(app => app.id === id)
-//     if(!appFound) throw new Error(`La cita con Id ${id} no fue encontrada`)
-//     return appFound    
-// }
-
-// export const registerAppointmentService = (app: ScheduleAppDTO): Appointment => {
-
-//     getUserByIdService(app.userId)
-//     const newAppointment: Appointment = {
-//         id: id++,
-//         date: new Date(app.date),
-//         time: app.time,
-//         userId: app.userId,
-//         status: Status.active
-//     }
-//     appointmentList.push(newAppointment)
-//     return newAppointment
-// }
-
-// export const cancelAppointmentService = (id: number): Appointment => {
-//     const appFound: Appointment = getAppointmentByIdService(id)
-//     appFound.status = Status.cancelled
-//     return appFound
-// }

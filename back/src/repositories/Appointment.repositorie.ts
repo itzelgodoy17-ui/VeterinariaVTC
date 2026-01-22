@@ -2,15 +2,15 @@ import { appDataSource } from "../config/data.source";
 import { Appointment } from "../entities/Appointment.entity";
 import { Status } from "../Interface/Appointment.Interface";
 
-
 export const AppointmentModel = appDataSource.getRepository(Appointment).extend({
 
     validateAllowAppointment: function(date: Date, time: string): void{
         const [hours, minutes] = time.split(`:`).map(Number)
         const appointmentDate = new Date(date)
-        appointmentDate.setHours(hours, minutes, 0)
 
-        const appointmentDateArg = new Date(appointmentDate.getTime() - 3 * 60 * 60 * 1000)
+        appointmentDate.setUTCHours(hours, minutes, 0)
+
+        const appointmentDateArg = appointmentDate
         const nowArg = new Date(new Date().getTime() - 3 * 60 * 60 * 1000)
 
         const dayOfWeek = appointmentDateArg.getUTCDay()
@@ -26,7 +26,7 @@ export const AppointmentModel = appDataSource.getRepository(Appointment).extend(
                 user:{
                     id: userId
                 },
-                date: new Date(date),
+                date: date,
                 time: time,
                 status: Status.active
             }

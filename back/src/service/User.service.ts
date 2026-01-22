@@ -13,6 +13,10 @@ export const getUserService = async (): Promise<User[]> => {
 }
 
 export const getUserByIdService = async(id: number): Promise<User> => {
+
+    if(!id) throw new Error(`El userId no fue recibido, no es posible pedir un turno`)
+
+
     const userFound: User | null = await UserModel.findOne({
         where: {
             id
