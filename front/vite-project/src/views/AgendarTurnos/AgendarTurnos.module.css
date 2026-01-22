@@ -1,0 +1,137 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #d4f1e8 0%, #e8f5e9 100%);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: #166534;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(45, 80, 22, 0.15);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  color: #2d5016;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-left: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input {
+  padding: 1rem 1.25rem;
+  border: 2px solid #a5d6a7;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.input:hover {
+  border-color: #81c784;
+}
+
+.errorInput {
+  padding: 1rem 1.25rem;
+  border: 2px solid #ef5350;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #ffebee;
+  color: #2d3748;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.errorInput:focus {
+  outline: none;
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+.error {
+  color: #c62828;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+  font-weight: 600;
+}
+
+.submitButton {
+  margin-top: 1rem;
+  padding: 1.125rem 2rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #43a047;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* Estilos para los inputs de fecha y hora */
+.input[type="date"]::-webkit-calendar-picker-indicator,
+.input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: opacity(0.7);
+  transition: all 0.2s ease;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator:hover,
+.input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  filter: opacity(1);
+}

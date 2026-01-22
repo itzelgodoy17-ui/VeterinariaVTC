@@ -1,15 +1,19 @@
 import styles from "./NavBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../NavBar/img/logoveterinaria.jpg"
+import { useContext } from "react";
+import { UsersContext } from "../../context/UsersContext";
 
-const Navbar = ({ setIsLogged }) => {
+const Navbar = () => {
+
+  const { logOutUser } = useContext(UsersContext)
+
   const navigate = useNavigate()
 
   const handleLogOut = () => {
-
     localStorage.removeItem("user")
     navigate("/login")
-    setIsLogged(false)
+    logOutUser()
   }
   return (
         <div className={styles.navbarContainer}>
@@ -23,6 +27,15 @@ const Navbar = ({ setIsLogged }) => {
           className={`${styles.navLink} ${location.pathname === "/" ? styles.active : ""}`}
           >
             Inicio
+          </Link>
+        </li>
+
+        <li className={styles.navItem}>
+          <Link
+          to="/pedirturno"
+          className={`${styles.navLink} ${location.pathname === "/pedirturno" ? styles.active : ""}`}
+          >
+            Pedir Turno
           </Link>
         </li>
 

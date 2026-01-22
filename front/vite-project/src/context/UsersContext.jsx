@@ -1,0 +1,82 @@
+import { createContext, useState }  from "react";
+import axios from "axios"
+
+export const UsersContext = createContext({
+    isLogged: false,
+    myApp: [],
+    loginUser: () => {},
+    logOutUser: () => {},
+    registerUser: () => {},
+    getUserAppointments: () => {},
+    scheduleAppointments: () => {},
+    cancelAppointments: () => {},
+})
+
+export const UsersProvider = ({ children }) => {
+
+    const [isLogged, setIsLogged] = useState(JSON.parse(localStorage.getItem("user")))
+    const [myApp, setMyApp] = useState([])
+
+    const loginUser = async (values) => {
+        const response = await axios.post(`http://localhost:3000/users/login`, values)
+        localStorage.setItem(`user`, JSON.stringify(response.data.user))
+        setIsLogged(response.data.user)
+        return response
+    }
+
+    const logOutUser = () => {
+        setIsLogged(false)
+    }
+
+    const registerUser = async (values) => {
+        await axios.post(`http://localhost:3000/users/register`, values)
+    }
+
+    const getUserAppointments = async () => {
+        const response = await axios.get(`http://localhost:3000/users/${isLogged.id}`)
+        setMyApp(response.data.user.appointments)
+    }
+
+    const scheduleAppointments = async (values) => {
+
+        const appData = {
+            ...values,
+            userId: isLogged.id
+        }
+
+        const response = await axios.post(`http://localhost:3000/appointments/schedule`, appData)
+        return response
+    }
+
+    const cancelAppointments = async (id) => {
+            await axios.put(`http://localhost:3000/appointments/cancel/${id}`)
+            const newMyApp = myApp.map((app) => {
+                if(app.id === id){
+                    app.status = "Cancelled"
+
+                    return app
+                } else {
+                    return app
+                }
+            })
+            setMyApp(newMyApp)
+    }
+
+
+    const value = {
+        isLogged,
+        myApp,
+        loginUser,
+        logOutUser,
+        registerUser,
+        getUserAppointments,
+        scheduleAppointments,
+        cancelAppointments
+    }
+
+    return (
+        <UsersContext.Provider value={value}>
+            {children}
+        </UsersContext.Provider>
+    )
+}

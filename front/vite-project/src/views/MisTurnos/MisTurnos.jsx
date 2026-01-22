@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import Turno from "../../components/Turnos/turno"
 import Styles from "./Misturnos.Module.css"
-import axios from "axios"
+import { UsersContext } from "../../context/UsersContext"
 
 function MisTurnos(){
 
-    const [myApp, setMyApp] = useState([])
+    const { myApp, getUserAppointments } = useContext(UsersContext)
 
     useEffect( () => {
-        setTimeout(() => {
-            axios.get(`http://localhost:3000/appointments/`)
-           .then((response) => {
-                setMyApp(response.data.data)
-           })
-           .catch((err) => console.log(err))
-        }, 2000)
+        try {
+            getUserAppointments()
+        } catch (error) {
+            Swal.fire({
+                icon: `error`,
+                title: `Ocurrio un error al solicitar los turnos`,
+                text: error.msg
+            })
+            
+        }
+        
     }, [])
 
     return(
@@ -34,7 +38,7 @@ function MisTurnos(){
                     status={app.status}
                     />
                     }) : (
-                        <h1> Cargando turnos... </h1>
+                        <h1> No hay turnos </h1>
                     )
                 }
             </div>

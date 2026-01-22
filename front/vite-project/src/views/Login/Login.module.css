@@ -1,4 +1,3 @@
-/* Contenedor principal del formulario */
 .formContainer {
   min-height: 100vh;
   background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
@@ -8,7 +7,6 @@
   padding: 40px 20px;
 }
 
-/* Formulario - tarjeta blanca centrada */
 .formContainer form {
   background: white;
   border-radius: 16px;
@@ -22,7 +20,6 @@
   min-height: auto;
 }
 
-/* Título del formulario */
 .formTitle {
   font-size: 26px;
   font-weight: 700;
@@ -35,12 +32,10 @@
   content: "🐾 ";
 }
 
-/* Grupo de campos */
 .formGroup {
   margin-bottom: 18px;
 }
 
-/* Etiquetas */
 .formLabel {
   display: block;
   font-size: 14px;
@@ -49,7 +44,6 @@
   margin-bottom: 8px;
 }
 
-/* Inputs */
 .formInput {
   width: 100%;
   padding: 12px 16px;
@@ -72,7 +66,6 @@
   color: #86efac;
 }
 
-/* Etiqueta de error */
 .errorLabel {
   color: #8a0808;
   font-size: 13px;
@@ -84,13 +77,11 @@
   content: "⚠️ ";
 }
 
-/* Input con error */
 .formInput.error {
   border-color: #8a0808;
   background-color: #fef2f2;
 }
 
-/* Botón de submit */
 .formButton {
   width: 100%;
   padding: 13px;

@@ -1,12 +1,15 @@
 import { useFormik } from "formik";
 import styles from "./Register.module.css";
 import { registerFormValidates } from "../../utils/validates";
-import axios from "axios"
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UsersContext } from "../../context/UsersContext";
 
 
 function Register(){
+
+    const {registerUser} = useContext(UsersContext)
 
     const formik = useFormik({
         initialValues: {
@@ -27,7 +30,9 @@ function Register(){
         },
         validate: registerFormValidates,
         onSubmit: (values) => {
-            axios.post(`http://localhost:3000/users/register`, values)
+
+            registerUser(values)
+            
             .then(() => {
                 Swal.fire({
                     icon: `success`,

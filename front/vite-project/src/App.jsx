@@ -4,13 +4,16 @@ import Login from "./views/Login/login"
 import MisTurnos from "./views/MisTurnos/MisTurnos"
 import Register from "./views/Register/Register"
 import Navbar from "./components/NavBar/Navbar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import styles from "../src/App.module.css";
 import NotFound from "./components/NotFound/NotFound"
+import { UsersContext } from "./context/UsersContext"
+import AgendarTurno from "./views/AgendarTurnos/AgendarTurnos"
 
 function App() {
 
-  const [isLogged, setIsLogged] = useState(localStorage.getItem("user"))
+  const {isLogged} = useContext(UsersContext)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,19 +28,20 @@ function App() {
       !isLogged ? (
         <main className={styles.main}>
           <Routes>
-            <Route path="/login" element={<Login setIsLogged={setIsLogged}/>}/>
+            <Route path="/login" element={<Login/>}/>
             <Route path="/Register" element={<Register/>}/>
           </Routes>
         </main>
       ) : (
         <>
         <header>
-          <Navbar setIsLogged={setIsLogged}/>
+          <Navbar/>
         </header>
         <main>
           <Routes>
             <Route path="/" element={<Home/>}/> 
             <Route path="/misturnos" element={<MisTurnos/>}/> 
+            <Route path="/pedirturno" element={<AgendarTurno/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
         </main>
