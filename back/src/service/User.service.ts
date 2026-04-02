@@ -47,12 +47,18 @@ export const registerUserService = async (user: UserRegisterDTO): Promise<UserRe
 export const loginUserService = async (user: UserLoginDTO) => {
     const credentialId: number = await checkCredentials(user.username, user.password)
     const userFound: User | null = await UserModel.findOne({
-        where: {
-            id: credentialId
-        }
+        where: { 
+            credentials: { id: credentialId } 
+        },
+        relations: ["credentials"]
     })
+
+    if (!userFound) {
+        throw new Error("Usuario no vinculado a estas credenciales.");
+    }
+
     return {
-        id: userFound?.id,
+        id: userFound.id,
         name: userFound?.name,
         email: userFound?.email,
         birthdate: userFound?.birthdate,
